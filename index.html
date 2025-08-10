@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuizMaster — Fun multiple-choice quizzes</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Confetti library from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1>QuizMaster</h1>
+    <p class="subtitle">Fast, clean multiple-choice quizzes — challenge your brain and track your score.</p>
+  </div>
+</header>
+
+<main class="container">
+  <section id="intro" class="card">
+    <h2>Ready to play?</h2>
+    <p>Select a topic and start the quiz. Each correct answer gives +1 point. No negative marking.</p>
+    <div class="controls">
+      <label for="topic">Topic</label>
+      <select id="topic">
+        <option value="general">🌍 General Knowledge</option>
+        <option value="tech">💻 Technology</option>
+        <option value="science">🔬 Science</option>
+        <option value="history">📜 History</option>
+        <option value="sports">🏅 Sports</option>
+        <option value="movies">🎬 Movies</option>
+      </select>
+
+      <label for="count">Number of questions</label>
+      <select id="count">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="15">15</option>
+      </select>
+
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty">
+        <option value="easy" selected>Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="timerToggle" /> Enable Timer (15s)
+      </label>
+
+      <button id="startBtn" class="primary">Start Quiz</button>
+    </div>
+  </section>
+
+  <section id="quiz" class="card hidden" aria-live="polite">
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+    <div class="quiz-header">
+      <div id="progress">Question <span id="current">1</span>/<span id="total">10</span></div>
+      <div id="score">Score: <span id="scoreValue">0</span></div>
+      <div id="timer" class="hidden">⏳ <span id="timeLeft">15</span>s</div>
+    </div>
+
+    <form id="questionForm">
+      <fieldset id="questionField">
+        <legend id="questionText">Question text</legend>
+        <div id="answers" class="answers"></div>
+      </fieldset>
+
+      <div class="quiz-actions">
+        <button type="button" id="nextBtn" class="primary">Submit</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="result" class="card hidden">
+    <h2>Quiz Complete</h2>
+    <p>Your final score: <strong><span id="finalScore">0</span></strong></p>
+
+    <div>
+      <label for="playerName">Enter your name:</label>
+      <input type="text" id="playerName" placeholder="Your name" />
+    </div>
+
+    <div class="result-actions">
+      <button id="restartBtn" class="secondary">Play Again</button>
+      <button id="saveScoreBtn" class="primary">Save Score (Local)</button>
+    </div>
+
+    <div id="leaderboardWrap">
+      <h3>Local Leaderboard</h3>
+      <ol id="leaderboard"></ol>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <small>QuizMaster • Built with HTML, CSS & JavaScript </small>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
